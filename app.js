@@ -13,7 +13,7 @@ const mapsRoute = require('./routes/maps');
 app.use('/maps', mapsRoute);
 
 app.get('/',(req,res)=>{
-  res.send('selam cınım');
+  res.send('hello world');
 });
 
 

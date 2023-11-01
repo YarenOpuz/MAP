@@ -4,15 +4,18 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
 const dotenv = require('dotenv');
-const limiter = require('./rateLimit');
+const limiter = require('./middlewares/rateLimit');
+const globalExceptionHandler = require('./middlewares/globalExceptionHandler');
 app.use(bodyParser.json());
 app.use('/', limiter);
 
+
 const mapsRoute = require('./routes/maps');
+const mapsController = require('./controllers/mapsController');
 
 app.use('/maps', mapsRoute);
 
-app.get('/',(req,res)=>{
+app.get('/', (req, res) => {
   res.send('hello world');
 });
 
@@ -27,8 +30,11 @@ mongoose.connect(process.env.DB_CONNECTION, {
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB bağlantı hatası:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('MongoDB bağlantısı başarıyla kuruldu');
 });
+
+
+app.use(globalExceptionHandler);
 
 app.listen(3000);

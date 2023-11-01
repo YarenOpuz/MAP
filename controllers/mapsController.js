@@ -7,7 +7,7 @@ async function getMaps(req, res, next) {
     const maps = await Maps.find();
     res.json(maps);
   } catch (error) {
-    //res.json({ message: error });
+
     next(error);
   }
 }
@@ -26,7 +26,7 @@ async function createMap(req, res, next) {
     const savedMaps = await maps.save();
     res.send(savedMaps);
   } catch (error) {
-    //res.status(400).send(error);
+
     next(error);
   }
 }
@@ -36,7 +36,7 @@ async function getMapById(req, res, next) {
     const maps = await Maps.findById(req.params.mapsId);
     res.send(maps);
   } catch (error) {
-    //res.status(401).send(error);
+
     next(error);
   }
 }
@@ -56,7 +56,7 @@ async function updateMapById(req, res, next) {
     );
     res.send(updatedMaps);
   } catch (error) {
-    //res.status(400).send(error);
+
     next(error);
   }
 }
@@ -66,7 +66,7 @@ async function deleteMapById(req, res, next) {
     const removedMaps = await Maps.deleteOne({ _id: req.params.mapsId });
     res.send(removedMaps);
   } catch (error) {
-    //res.status(400).send(error);
+
     next(error);
   }
 }
@@ -97,7 +97,7 @@ async function getSortedLocations(req, res, next) {
 
     res.json(sortedLocations);
   } catch (error) {
-    //return res.status(500).json({ message: "Bir hata oluştu", error: error.message });
+
     next(error);
   }
 }

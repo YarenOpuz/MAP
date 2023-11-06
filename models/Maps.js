@@ -1,5 +1,20 @@
-const { object, required } = require("joi");
 const mongoose = require('mongoose');
+
+
+
+const LocationsSchema = new mongoose.Schema({
+  latitude: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  longitude: {
+    type: Number,
+    default: 0,
+    required: true,
+  }
+});
+
 
 const MapsSchema = new mongoose.Schema({
   name: {
@@ -7,25 +22,16 @@ const MapsSchema = new mongoose.Schema({
     required: true,
   },
 
-  latitude: {
-    type: Number,
-    default:0,
-    required:true,
+  locations: {
+    type:  LocationsSchema 
   },
 
-  longitude: {
-    type: Number,
-    default:0,
-    required:true,
-  },
   
+
   color: {
     type: String,
-    required:true,
+    required: true,
   }
 });
 
-
-
-
-module.exports = mongoose.model('Maps',MapsSchema);
+module.exports = mongoose.model('Maps', MapsSchema);

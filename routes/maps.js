@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const mapsController = require('../controllers/mapsController');
+const maps = require('../controllers/maps');
 const globalExceptionHandler = require('../middlewares/globalExceptionHandler');
 router.use(globalExceptionHandler);
 
-router.get('/', mapsController.getMaps);
-router.post('/', mapsController.createMap);
-router.get('/:mapsId', mapsController.getMapById);
-router.put('/:mapsId', mapsController.updateMapById);
-router.delete('/:mapsId', mapsController.deleteMapById);
-router.get('/locations/:id', mapsController.getSortedLocations);
+router.get('/', maps.getMaps);
+router.post('/', maps.createMap);
+router.get('/:mapsId', maps.getMapById);
+router.put('/:mapsId', maps.updateMapById);
+router.delete('/:mapsId', maps.deleteMapById);
+router.get('/locations/:id', maps.getSortedLocations);
 
 
 

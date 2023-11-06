@@ -8,10 +8,11 @@ const limiter = require('./middlewares/rateLimit');
 const globalExceptionHandler = require('./middlewares/globalExceptionHandler');
 app.use(bodyParser.json());
 app.use('/', limiter);
+dotenv.config()
 
+const DB_CONNECTION = process.env.DB_CONNECTION;
 
 const mapsRoute = require('./routes/maps');
-const mapsController = require('./controllers/mapsController');
 
 app.use('/maps', mapsRoute);
 
@@ -21,8 +22,7 @@ app.get('/', (req, res) => {
 
 
 
-dotenv.config()
-mongoose.connect(process.env.DB_CONNECTION, {
+mongoose.connect(DB_CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });

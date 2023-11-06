@@ -89,39 +89,6 @@ async function deleteMapById(req, res, next) {
 }
 
 
-
-
-// async function getSortedLocations(req, res, next) {
-//   const id = req.params.id;
-//   try {
-//     const targetLocation = await Maps.findById(id);
-
-//     if (!targetLocation) {
-//       return res.status(404).json({ message: "Belirtilen ID ile konum bulunamadı" });
-//     }
-
-//     const allLocations = await Maps.find({
-//       _id: { $ne: id },
-//     });
-
-//     const sortedLocations = allLocations.sort((a, b) => {
-//       const distanceToA = Math.sqrt(
-//         (a.locations.latitude - targetLocation.locations.latitude) ** 2 + (a.locations.longitude - targetLocation.locations.longitude) ** 2
-//       );
-//       const distanceToB = Math.sqrt(
-//         (b.locations.latitude - targetLocation.locations.latitude) ** 2 + (b.locations.longitude - targetLocation.locations.longitude) ** 2
-//       );
-
-//       return distanceToA - distanceToB;
-//     });
-
-//     res.json(sortedLocations);
-//   } catch (error) {
-//     next(error);
-//   }
-// }
-
-
 async function getSortedLocations(req, res, next) {
   const id = req.params.id;
   try {
